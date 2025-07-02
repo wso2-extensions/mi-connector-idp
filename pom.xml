@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.wso2.carbon.connector</groupId>
     <artifactId>mi-connector-idp</artifactId>
-    <version>1.1.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>WSO2 Carbon - Connector For IDP</name>
     <url>http://wso2.org</url>
@@ -45,7 +45,6 @@
         <rampart.wso2.version>1.6.1.wso2v18</rampart.wso2.version>
         <connector.core.version>0.9.2</connector.core.version>
         <apache.pdfbox.version>3.0.2</apache.pdfbox.version>
-        <apache.fontbox.version>3.0.2</apache.fontbox.version>
         <httpmime.version>4.3.6</httpmime.version>
         <org.json.version>20080701</org.json.version>
         <gson.version>2.10.1</gson.version>
@@ -60,11 +59,6 @@
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
             <version>${apache.pdfbox.version}</version> 
-        </dependency>
-        <dependency>
-            <groupId>org.apache.pdfbox</groupId>
-            <artifactId>fontbox</artifactId>
-            <version>${apache.fontbox.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.synapse</groupId>
@@ -239,7 +233,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>mi-connector-${connector.name}-${project.version}</finalName>
+                            <finalName>${connector.name}-connector-${project.version}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <filters>
                                 <filter>src/main/assembly/filter.properties</filter>
