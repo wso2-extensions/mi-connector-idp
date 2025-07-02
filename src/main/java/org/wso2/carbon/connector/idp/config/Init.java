@@ -14,27 +14,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.wso2.carbon.connector.ai.config;
+package org.wso2.carbon.connector.idp.config;
 
 import org.apache.synapse.ManagedLifecycle;
 import org.apache.synapse.MessageContext;
 import org.apache.synapse.SynapseException;
 import org.apache.synapse.core.SynapseEnvironment;
-import org.wso2.carbon.connector.ai.connection.AIConnection;
-import org.wso2.carbon.connector.ai.connection.AIConnectionConfiguration;
-import org.wso2.carbon.connector.ai.constants.AIConstants;
-import org.wso2.carbon.connector.ai.util.AIUtils;
-import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.connector.core.ConnectException;
-import org.wso2.carbon.connector.core.connection.ConnectionHandler;
+import org.wso2.integration.connector.core.AbstractConnector;
+import org.wso2.integration.connector.core.ConnectException;
+import org.wso2.integration.connector.core.connection.ConnectionHandler;
+import org.wso2.carbon.connector.idp.connection.AIConnection;
+import org.wso2.carbon.connector.idp.connection.AIConnectionConfiguration;
+import org.wso2.carbon.connector.idp.constants.AIConstants;
+import org.wso2.carbon.connector.idp.util.AIUtils;
 
 import java.util.Optional;
 
-
 public class Init extends AbstractConnector implements ManagedLifecycle {
+
     @Override
     public void init(SynapseEnvironment synapseEnvironment) {
-
     }
 
     @Override
@@ -60,30 +59,31 @@ public class Init extends AbstractConnector implements ManagedLifecycle {
                 }
             }
         } catch (SynapseException e) {
-            handleException("Failed to initiate ai connector configuration.", e, messageContext);
+            handleException("Failed to initiate idp connector configuration.", e, messageContext);
         }
     }
 
     private AIConnectionConfiguration getConnectionConfigFromContext(MessageContext mc) throws SynapseException {
-       Optional<String> openAIKey = AIUtils.getStringParam(mc, AIConstants.KEY_STRING);
-       String openAIModel = AIUtils.getStringParam(mc, AIConstants.MODEL_STRING).orElse(AIConstants.MODEL_DEFAULT);
-       String openAIEndpoint = AIUtils.getStringParam(mc, AIConstants.ENDPOINT_STRING)
-               .orElse(AIConstants.ENDPOINT_DEFAULT);
-       Optional<String> connectionName = AIUtils.getStringParam(mc, AIConstants.CONNECTION_NAME);
+        Optional<String> apiKey = AIUtils.getStringParam(mc, AIConstants.KEY_STRING);
+        String model = AIUtils.getStringParam(mc, AIConstants.MODEL_STRING).orElse(AIConstants.MODEL_DEFAULT);
+        String endpointURL = AIUtils.getStringParam(mc, AIConstants.ENDPOINT_STRING)
+                .orElse(AIConstants.ENDPOINT_DEFAULT);
+        Optional<String> connectionName = AIUtils.getStringParam(mc, AIConstants.CONNECTION_NAME);
 
-       if (!openAIKey.isPresent()) {
-           throw new SynapseException("OpenAI API key is required.");
-       }
+        if (!apiKey.isPresent()) {
+            throw new SynapseException("API key is required.");
+        }
 
-       if (!connectionName.isPresent()) {
-           throw new SynapseException("Mandatory parameter 'connectionName' is not set.");
-       }
+        if (!connectionName.isPresent()) {
+            throw new SynapseException("Mandatory parameter 'connectionName' is not set.");
+        }
 
-       AIConnectionConfiguration connectionConfiguration = new AIConnectionConfiguration();
-       connectionConfiguration.setConnectionName(connectionName.get());
-       connectionConfiguration.setOpenaiKey(openAIKey.get());
-       connectionConfiguration.setOpenaiModel(openAIModel);
-       connectionConfiguration.setOpenaiEndpoint(openAIEndpoint);
-       return connectionConfiguration;
+        AIConnectionConfiguration connectionConfiguration = new AIConnectionConfiguration();
+        connectionConfiguration.setConnectionName(connectionName.get());
+        connectionConfiguration.setApiKey(apiKey.get());
+        connectionConfiguration.setModel(model);
+        connectionConfiguration.setEndpointUrl(endpointURL);
+        return connectionConfiguration;
     }
 }
+

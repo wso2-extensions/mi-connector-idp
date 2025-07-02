@@ -14,20 +14,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.wso2.carbon.connector.ai.model.prompt;
+package org.wso2.carbon.connector.idp.exception;
 
-/**
- * A template class for sending the request to OpenAI in prompt mode.
- */
-@SuppressWarnings({"unused", "FieldCanBeLocal"})
-public class AIRequestSchema {
-    private final String prompt;
-    private final String payload;
-    private final String headers;
+import org.wso2.integration.connector.core.ConnectException;
 
-    public AIRequestSchema(String prompt, String payload, String headers) {
-        this.prompt = prompt;
-        this.payload = payload;
-        this.headers = headers;
+public class AIConnectorException extends ConnectException {
+
+    public AIConnectorException(String message, Throwable cause) {
+        super(cause, message);
+    }
+
+    public AIConnectorException(String message) {
+        super(message);
     }
 }

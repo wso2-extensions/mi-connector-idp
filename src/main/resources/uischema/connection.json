@@ -1,8 +1,8 @@
 {
-  "connectorName": "AI",
-  "connectionName": "openai",
-  "title": "OpenAI Connection",
-  "help": "<h1>OpenAI Connection</h1> <b>The WSO2 AI connector allows you to access the exposed OpenAI API through the WSO2 MI.</b>",
+  "connectorName": "idp",
+  "connectionName": "llm",
+  "title": "LLM Connection",
+  "help": "<h1>LLM Connection</h1> <b>The WSO2 IDP connector allows you to process documents through the WSO2 MI.</b>",
   "elements": [
     {
       "type": "attribute",
@@ -10,22 +10,22 @@
         "name": "connectionName",
         "displayName": "Connection Name",
         "inputType": "string",
-        "defaultValue": "OPENAI_CONNECTION_1",
+        "defaultValue": "LLM_CONNECTION_1",
         "required": "true",
-        "helpTip": "The name for the OpenAI connection",
+        "helpTip": "The name for the LLM connection",
         "validation": "nameWithoutSpecialCharactors"
       }
     },
     {
       "type": "attributeGroup",
       "value": {
-        "groupName": "AI Engine",
+        "groupName": "LLM Engine",
         "elements": [
           {
             "type": "attribute",
             "value": {
-              "name": "openAIKey",
-              "displayName": "OpenAI API Key",
+              "name": "apiKey",
+              "displayName": "API Key",
               "inputType": "stringOrExpression",
               "defaultValue": "",
               "required": "true",
@@ -35,23 +35,23 @@
           {
             "type": "attribute",
             "value": {
-              "name": "openAIModel",
-              "displayName": "OpenAI Model",
+              "name": "model",
+              "displayName": "LLM Model",
               "inputType": "stringOrExpression",
-              "defaultValue": "gpt-4-turbo",
+              "defaultValue": "gpt-4.1-mini",
               "required": "false",
-              "helpTip": "Define the AI Model"
+              "helpTip": "Define the LLM Model"
             }
           },
           {
             "type": "attribute",
             "value": {
-              "name": "openAIEndpoint",
-              "displayName": "OpenAI Endpoint",
+              "name": "endpointUrl",
+              "displayName": "LLM Endpoint",
               "inputType": "stringOrExpression",
               "defaultValue": "https://api.openai.com/v1/chat/completions",
               "required": "false",
-              "helpTip": "Define the AI Endpoint"
+              "helpTip": "Define the LLM Endpoint"
             }
           }
         ]

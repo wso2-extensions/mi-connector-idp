@@ -1,0 +1,136 @@
+{
+  "connectorName": "idp",
+  "operationName": "processDocuments",
+  "title": "Scan a given image/document with AI",
+  "help": "<h1>Process image/document with AI</h1> <b>Process a given image/document with AI</b>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "llm"
+              ],
+              "defaultType": "connection.llm",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "contentFormat",
+              "displayName": "Content Format",
+              "inputType": "combo",
+              "defaultValue": "Data URI",
+              "comboValues": [
+                "Data URI",
+                "Base64"
+              ],
+              "required": "true",
+              "helpTip": "Select the format of the content to be scanned"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "mimeType",
+              "displayName": "MIME Type",
+              "inputType": "stringOrExpression",
+              "placeholder": "application/pdf",
+              "required": "true",
+              "enableCondition": [
+                {
+                  "contentFormat":"Base64"
+                }
+              ]
+              ,
+              "helpTip": "Specify the MIME type of the content to be scanned. Allowed values are: image/png, image/jpeg, image/gif, image/webp, application/pdf"
+            }
+          },
+
+          {
+            "type": "attribute",
+            "value": {
+              "name": "fileContent",
+              "displayName": "Content",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Give the content to be scanned."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "scannerOutputSchema",
+              "displayName": "Schema Name",
+              "inputType": "idpSchemaGenerateView",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Generate a schema file for a provided image or PDF document."
+            }
+          },
+          
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Advanced",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "maxTokens",
+                    "displayName": "Max Tokens",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "4096",
+                    "required": "false",
+                    "helpTip": "The maximum number of tokens that can be generated in the chat completion."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Name of the variable to which the output of the operation should be assigned"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+              "required": "false"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

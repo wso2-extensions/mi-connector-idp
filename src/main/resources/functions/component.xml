@@ -15,14 +15,10 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-<template name="prompt" xmlns="http://ws.apache.org/ns/synapse">
-	<parameter name="description" description="Prompt Operation Description"/>
-	<parameter name="prompt" description="User Prompt to be executed"/>
-	<parameter name="headers" description="Headers"/>
-	<parameter name="payload" description="Payload"/>
-	<parameter name="retryCount" description="Retries to be done"/>
-
-	<sequence>
-		<class name="org.wso2.carbon.connector.ai.AIConverser"/>
-	</sequence>
-</template>
+<component name="functions" type="synapse/template" >
+    <subComponents> 
+		<component name="processDocuments" >
+	    		<file>processDocuments.xml</file>
+		</component>
+    </subComponents>    
+</component>

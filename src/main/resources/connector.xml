@@ -16,11 +16,10 @@
   ~ under the License.
   -->
 <connector>
-    <component name="AI" package="org.wso2.carbon.connector.ai" >
+    <component name="idp" package="org.wso2.carbon.connector" >
         <dependency component="config" />
-        <dependency component="prompt" />
-        <dependency component="scan" />
-        <description>WSO2 integration module for AI prompt</description>
+        <dependency component="functions" />
+        <description>WSO2 integration module for Intelligent Document Processing</description>
     </component>
     <icon>icon/icon-small.gif</icon>
 </connector>

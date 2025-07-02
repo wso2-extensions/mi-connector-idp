@@ -1,6 +1,12 @@
 # Compiled class file
 *.class
 
+# Maven build output
+target/
+
+#ignore IDE/editor settings
+.vscode/
+
 # Log file
 *.log
 

@@ -17,11 +17,11 @@
   -->
 <template name="init" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="name" description="Unique name to identify the connection"/>
-    <parameter name="openAIKey" description="OpenAI Key"/>
-    <parameter name="openAIModel" description="OpenAI Model"/>
-    <parameter name="openAIEndpoint" description="OpenAI Endpoint"/>
+    <parameter name="apiKey" description="API Key"/>
+    <parameter name="model" description="LLM Model"/>
+    <parameter name="endpointUrl" description="LLM Endpoint"/>
     <sequence>
         <property name="name" expression="$func:name"/>
-        <class name="org.wso2.carbon.connector.ai.config.Init"/>
+        <class name="org.wso2.carbon.connector.idp.config.Init"/>
     </sequence>
 </template>

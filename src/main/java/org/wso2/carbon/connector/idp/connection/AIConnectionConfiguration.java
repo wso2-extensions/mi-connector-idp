@@ -14,13 +14,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.wso2.carbon.connector.ai.connection;
+package org.wso2.carbon.connector.idp.connection;
 
 public class AIConnectionConfiguration {
     private String connectionName;
-    private String openaiKey;
-    private String openaiModel;
-    private String openaiEndpoint;
+    private String apiKey;
+    private String model;
+    private String endpointUrl;
 
     public String getConnectionName() {
         return connectionName;
@@ -30,28 +30,27 @@ public class AIConnectionConfiguration {
         this.connectionName = connectionName;
     }
 
-    public String getOpenaiKey() {
-        return openaiKey;
+    public String getApiKey() {
+        return apiKey;
     }
 
-    public void setOpenaiKey(String openaiKey) {
-        this.openaiKey = openaiKey;
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
 
-    public String getOpenaiModel() {
-        return openaiModel;
+    public String getModel() {
+        return model;
     }
 
-    public void setOpenaiModel(String openaiModel) {
-        this.openaiModel = openaiModel;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public String getOpenaiEndpoint() {
-        return openaiEndpoint;
+    public String getEndpointUrl() {
+        return endpointUrl;
     }
 
-    public void setOpenaiEndpoint(String openaiEndpoint) {
-        this.openaiEndpoint = openaiEndpoint;
+    public void setEndpointUrl(String endpointUrl) {
+        this.endpointUrl = endpointUrl;
     }
-
 }

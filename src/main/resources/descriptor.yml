@@ -1,0 +1,22 @@
+# Connector Descriptor File
+# Specifies the dependencies and repositories required for the connector.
+
+dependencies:
+  - groupId: com.google.code.gson
+    artifactId: gson
+    version: "2.10.1"
+  - groupId: org.apache.pdfbox
+    artifactId: pdfbox
+    version: "3.0.2"
+  - groupId: org.apache.pdfbox
+    artifactId: fontbox
+    version: "3.0.2"
+  - groupId: org.apache.pdfbox
+    artifactId: pdfbox-io
+    version: "3.0.2"
+
+repositories:
+  - id: "wso2-nexus"
+    url: "https://maven.wso2.org/nexus/content/groups/wso2-public/"
+  - id: "wso2-maven2-repository"
+    url: "scp://dist.wso2.org/home/httpd/dist.wso2.org/maven2/"

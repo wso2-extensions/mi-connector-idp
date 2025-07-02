@@ -14,14 +14,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.wso2.carbon.connector.ai.connection;
+package org.wso2.carbon.connector.idp.connection;
 
-import org.wso2.carbon.connector.ai.model.AIEngineModel;
-import org.wso2.carbon.connector.core.connection.Connection;
+import org.wso2.integration.connector.core.connection.Connection;
+import org.wso2.integration.connector.core.connection.ConnectionConfig;
+import org.wso2.carbon.connector.idp.model.AIEngineModel;
 
 public class AIConnection implements Connection {
     private AIConnectionConfiguration aiConnectionConfiguration;
     private AIEngineModel engine;
+
+    @Override
+    public void connect(ConnectionConfig connectionConfiguration) {
+    }
+
+    @Override
+    public void close() {
+    }
 
     public AIConnection(AIConnectionConfiguration aiConnectionConfiguration) {
         this.aiConnectionConfiguration = aiConnectionConfiguration;
@@ -47,7 +56,10 @@ public class AIConnection implements Connection {
     }
 
     private AIEngineModel createNewAIEngineInstance(AIConnectionConfiguration connectionConfiguration) {
-        return new AIEngineModel(connectionConfiguration.getOpenaiKey(),
-                connectionConfiguration.getOpenaiModel(), connectionConfiguration.getOpenaiEndpoint());
+        return new AIEngineModel(
+            connectionConfiguration.getApiKey(),
+            connectionConfiguration.getModel(),
+            connectionConfiguration.getEndpointUrl()
+        );
     }
 }
