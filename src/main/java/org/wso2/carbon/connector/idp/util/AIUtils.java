@@ -55,8 +55,8 @@ public class AIUtils {
         if (!schemaPath.isEmpty()) {
             try {
                 MicroIntegratorRegistry registry = new MicroIntegratorRegistry();
-                String jsonPath_1 = "gov:mi-resources/idp-schemas/" + schemaPath + "/" + schemaPath + ".json";
-                String jsonPath_2 = "gov:idp-schemas/" + schemaPath + "/" + schemaPath + ".json"; // for backward compatibility
+                String jsonPath_1 = AIConstants.REGISTRY_PATH + schemaPath + "/" + schemaPath + ".json";
+                String jsonPath_2 = AIConstants.REGISTRY_PATH_BELOW_4_4_0 + schemaPath + "/" + schemaPath + ".json"; // for backward compatibility
 
                 if (registry.isResourceExists(jsonPath_1)) {
                     Resource resource = registry.getResource(jsonPath_1);
@@ -128,7 +128,6 @@ public class AIUtils {
         }
         return fileContent;
     }
-
 
     public static AIScannerAgentModel getAIScannerAgent(MessageContext mc) throws AIConnectorException {
         AIScannerAgentModel agent = new AIScannerAgentModel();

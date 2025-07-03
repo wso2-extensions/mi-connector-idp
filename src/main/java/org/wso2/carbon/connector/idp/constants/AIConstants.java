@@ -36,6 +36,8 @@ public class AIConstants {
     public static final Integer MAX_TOKENS_DEFAULT = 4096;
     public static final Integer IMAGE_DPI_DEFAULT = 300;
     public static final String SCANNER_OUTPUT_SCHEMA = "scannerOutputSchema";
+    public static final String REGISTRY_PATH = "gov:mi-resources/idp-schemas/";
+    public static final String REGISTRY_PATH_BELOW_4_4_0 = "gov:idp-schemas/";
     public static final String SYSTEM_PROMPT_TEMPLATE =
             "You are an expert AI assistant specialized in analyzing multiple images and extracting structured data. " +
             "Your task is to accurately populate the provided JSON schema using the given images. " +
