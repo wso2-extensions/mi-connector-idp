@@ -25,3 +25,4 @@
         <class name="org.wso2.carbon.connector.idp.config.Init"/>
     </sequence>
 </template>
+

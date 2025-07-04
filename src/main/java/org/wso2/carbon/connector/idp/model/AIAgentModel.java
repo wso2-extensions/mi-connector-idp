@@ -79,3 +79,4 @@ public abstract class AIAgentModel {
     
     public abstract void processRequest(AIConnection connection) throws AIConnectorException;
 }
+

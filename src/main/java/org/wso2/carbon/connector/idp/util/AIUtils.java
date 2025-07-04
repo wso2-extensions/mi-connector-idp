@@ -30,6 +30,10 @@ import org.wso2.carbon.connector.idp.model.scan.AIScannerAgentModel;
 import org.wso2.micro.integrator.registry.MicroIntegratorRegistry;
 import org.wso2.micro.integrator.registry.Resource;
 
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -105,20 +109,20 @@ public class AIUtils {
         }
     }
 
-    public static String getSchemaContentString(String schemaRegistryPath) throws AIConnectorException {
-        InputStream schemaStream = AIUtils.getSchemaFromRegistry(schemaRegistryPath);
-        String schema = "";
-        if (schemaStream != null) {
-            try {
-                schema = IOUtils.toString(schemaStream, String.valueOf(StandardCharsets.UTF_8))
-                        .replace("\"", "")
-                        .replace("\t", "")
-                        .replace("\n", "");
-            } catch (IOException e) {
-                throw new AIConnectorException("Error with the output schema content reading", e);
+    public static JsonObject getSchemaContentAsJsonObject(String schemaRegistryPath) throws AIConnectorException {
+        try (InputStream schemaStream = getSchemaFromRegistry(schemaRegistryPath)) { 
+            if (schemaStream == null) {
+                throw new AIConnectorException("Could not find or open schema at path: " + schemaRegistryPath);
             }
+            String schemaContent = IOUtils.toString(schemaStream, String.valueOf(StandardCharsets.UTF_8));
+            return JsonParser.parseString(schemaContent).getAsJsonObject();
+        } catch (IOException e) {
+            throw new AIConnectorException("Error reading content from the schema stream", e);
+        } catch (JsonSyntaxException e) {
+            throw new AIConnectorException("Invalid JSON format in schema at path: " + schemaRegistryPath, e);
+        } catch (IllegalStateException e) {
+            throw new AIConnectorException("Schema content is not a valid JSON object at path: " + schemaRegistryPath, e);
         }
-        return schema;
     }
 
     public static String constructDataUriIfBase64(String fileContent, String mimeType, String contentFormat) {

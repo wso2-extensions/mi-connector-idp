@@ -99,23 +99,35 @@ public class AIScannerAgentModel extends AIAgentModel {
         this.fileContent = fileContent;
     }
 
-    @Override
+   @Override
     public void processRequest(AIConnection connection) throws AIConnectorException {
         try {
             HttpClient sharedHttpClient = connection.getEngine().getHttpClient();
-
             AIEngineModel engine = connection.getEngine();
             String endpointUrl = engine.getEndpointUrl();
             String apiKey = engine.getApiKey();
             String modelName = engine.getModel();
 
             List<Map<String, Object>> messages = buildRequestMessages();
+
+            JsonObject schemaObject = AIUtils.getSchemaContentAsJsonObject(getSchemaRegistryPath());
+
+            Map<String, Object> jsonSchemaPayload = Map.of(
+                    "name", "document_extraction_schema",
+                    "schema", schemaObject
+                    // "strict" if needed 
+            );
+            Map<String, Object> responseFormat = Map.of(
+                    "type", "json_schema",
+                    "json_schema", jsonSchemaPayload
+            );
+
             Map<String, Object> requestPayload = Map.of(
-                "model", modelName,
-                "messages", messages,
-                "max_tokens", this.maxTokens,
-                "temperature", 0.0,
-                "response_format", Map.of("type", "json_object")
+                    "model", modelName, 
+                    "messages", messages,
+                    "max_tokens", this.maxTokens,
+                    "temperature", 0.0,
+                    "response_format", responseFormat 
             );
 
             String jsonBody = gson.toJson(requestPayload);
@@ -129,9 +141,8 @@ public class AIScannerAgentModel extends AIAgentModel {
 
             HttpResponse<String> response = sharedHttpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
+             if (response.statusCode() == 200) {
                 ApiResponse apiResponse = gson.fromJson(response.body(), ApiResponse.class);
-
                 if (apiResponse == null || apiResponse.getChoices() == null || apiResponse.getChoices().isEmpty()) {
                     throw new AIConnectorException("Failed to process document: LLM response was empty or malformed.");
                 }
@@ -141,7 +152,11 @@ public class AIScannerAgentModel extends AIAgentModel {
             } else {
                 throw new AIConnectorException("API request failed with status code " + response.statusCode() + ": " + response.body());
             }
-        } catch (IOException e) {
+         } 
+         catch (AIConnectorException e) {
+            throw e;
+         }
+         catch (IOException e) {
             throw new AIConnectorException("Error occurred while sending request to AI service.", e);
         } catch (Exception e) {
             throw new AIConnectorException(e.getMessage(), e);
@@ -160,6 +175,7 @@ public class AIScannerAgentModel extends AIAgentModel {
         if (content == null || content.isBlank()) {
             throw new AIConnectorException("LLM response content is empty or not a string");
         }
+        //some open source LLMS may return content with markdown code fences
         String cleanedContent = content.replaceAll("```json\\s*", "").replaceAll("```\\s*", "").trim();
         Pattern pattern = Pattern.compile("\\{[\\s\\S]*\\}");
         Matcher matcher = pattern.matcher(cleanedContent);
@@ -187,13 +203,10 @@ public class AIScannerAgentModel extends AIAgentModel {
         List<Map<String, Object>> messages = new ArrayList<>();
         messages.add(Map.of("role", "system", "content", getBasePrompt()));
 
-        List<Map<String, Object>> userMessageParts = new ArrayList<>();
+        List<Object> userMessageParts = new ArrayList<>();
+        userMessageParts.add(Map.of("type", "text", "text", AIConstants.USER_PROMPT_TEMPLATE));
 
-        String schemaContent = AIUtils.getSchemaContentString(getSchemaRegistryPath());
-        String textPrompt = AIConstants.USER_PROMPT_TEMPLATE + schemaContent;
-        userMessageParts.add(Map.of("type", "text", "text", textPrompt));
-
-        if (fileContent.toLowerCase().startsWith("data:")) {
+        if (fileContent != null && fileContent.toLowerCase().startsWith("data:")) {
             String mimeType = fileContent.substring(5, fileContent.indexOf(";")).toLowerCase();
             if (mimeType.equals("application/pdf")) {
                 String base64Pdf = fileContent.substring("data:application/pdf;base64,".length());
@@ -201,14 +214,13 @@ public class AIScannerAgentModel extends AIAgentModel {
                 for (String base64Image : Objects.requireNonNull(base64Images)) {
                     userMessageParts.add(createImagePart("data:image/png;base64," + base64Image));
                 }
-            } else if (mimeType.equals("image/png") || mimeType.equals("image/jpeg") ||
-                       mimeType.equals("image/gif") || mimeType.equals("image/webp")) {
+            } else if (mimeType.startsWith("image/")) {
                 userMessageParts.add(createImagePart(fileContent));
             } else {
-                throw new AIConnectorException("Invalid file format with the payload");
+                throw new AIConnectorException("Unsupported file MIME type: " + mimeType);
             }
         } else {
-            throw new AIConnectorException("Invalid Base64 string format");
+            throw new AIConnectorException("Invalid or missing Base64 data URI string.");
         }
         messages.add(Map.of("role", "user", "content", userMessageParts));
         return messages;
@@ -218,3 +230,4 @@ public class AIScannerAgentModel extends AIAgentModel {
         return Map.of("type", "image_url", "image_url", Map.of("url", dataUri));
     }
 }
+

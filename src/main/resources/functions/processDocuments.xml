@@ -29,3 +29,4 @@
 		<class name="org.wso2.carbon.connector.idp.AIScanner"/>
 	</sequence>
 </template>
+

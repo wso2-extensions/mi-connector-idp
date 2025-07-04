@@ -28,3 +28,4 @@ public class AIConnectorException extends ConnectException {
         super(message);
     }
 }
+
