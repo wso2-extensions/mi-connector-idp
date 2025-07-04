@@ -50,4 +50,3 @@ public class AIConstants {
             "Use the descriptions to infer values where necessary. Field names must be case-sensitive and match the schema exactly.";
 }
 
-
