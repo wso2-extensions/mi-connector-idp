@@ -114,7 +114,8 @@ public class AIScannerAgentModel extends AIAgentModel {
 
             Map<String, Object> jsonSchemaPayload = Map.of(
                     "name", "document_extraction_schema",
-                    "schema", schemaObject
+                    "schema", schemaObject,
+                    "strict", true // Set to true for strict validation, or false for non-
                     // "strict" if needed 
             );
             Map<String, Object> responseFormat = Map.of(
