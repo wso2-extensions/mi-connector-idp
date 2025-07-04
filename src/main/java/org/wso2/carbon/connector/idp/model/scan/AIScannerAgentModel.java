@@ -214,7 +214,8 @@ public class AIScannerAgentModel extends AIAgentModel {
                 for (String base64Image : Objects.requireNonNull(base64Images)) {
                     userMessageParts.add(createImagePart("data:image/png;base64," + base64Image));
                 }
-            } else if (mimeType.startsWith("image/")) {
+            } else if ((mimeType.equals("image/png") || mimeType.equals("image/jpeg") ||
+                       mimeType.equals("image/gif") || mimeType.equals("image/webp"))) {
                 userMessageParts.add(createImagePart(fileContent));
             } else {
                 throw new AIConnectorException("Unsupported file MIME type: " + mimeType);
