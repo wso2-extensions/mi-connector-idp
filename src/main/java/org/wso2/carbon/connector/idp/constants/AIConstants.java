@@ -46,7 +46,6 @@ public class AIConstants {
             "Field names in the output must exactly match the keys in the schema, including case sensitivity. " +
             "Return only a valid JSON object matching the schema structure. Do not include any other text, comments, or formatting.";
     public static final String USER_PROMPT_TEMPLATE =
-            "Please analyze all the provided images thoroughly and populate the following JSON schema based on the information extracted. " +
-            "Use the descriptions to infer values where necessary. Field names must be case-sensitive and match the schema exactly.";
+            "Please analyze all the provided images thoroughly and populate the following JSON schema based on the information extracted. ";
 }
 
