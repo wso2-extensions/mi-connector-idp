@@ -48,6 +48,28 @@ import javax.imageio.ImageIO;
 
 public class AIUtils {
 
+       public static class ModelEndpointDefaults {
+        public String model;
+        public String endpoint;
+        public ModelEndpointDefaults(String model, String endpoint) {
+            this.model = model;
+            this.endpoint = endpoint;
+        }
+    }
+
+
+    public static ModelEndpointDefaults getDefaultsForConnectionType(String connectionType) {
+        if (AIConstants.OLLAMA.equals(connectionType)) {
+            return new ModelEndpointDefaults(AIConstants.MODEL_OLLAMA_DEFAULT, AIConstants.ENDPOINT_OLLAMA_DEFAULT);
+        } else if (AIConstants.OPEN_AI.equals(connectionType)) {
+            return new ModelEndpointDefaults(AIConstants.MODEL_OPEN_AI_DEFAULT, AIConstants.ENDPOINT_OPEN_AI_DEFAULT);
+        } else if (AIConstants.CUSTOM_LLM.equals(connectionType)) {
+            return new ModelEndpointDefaults(AIConstants.MODEL_LLM_DEFAULT, AIConstants.ENDPOINT_LLM_DEFAULT);
+        } else {
+            return new ModelEndpointDefaults(AIConstants.MODEL_LLM_DEFAULT, AIConstants.ENDPOINT_LLM_DEFAULT);
+        }
+    }
+
     /**
      * Reading the schema from the registry
      *

@@ -1,8 +1,8 @@
 {
   "connectorName": "idp",
-  "connectionName": "llm",
-  "title": "LLM Connection",
-  "help": "<h1>LLM Connection</h1> <b>The WSO2 IDP connector allows you to process documents through the WSO2 MI.</b>",
+  "connectionName": "OLLAMA",
+  "title": "Ollama Connection",
+  "help": "<h1>Ollama Connection</h1> <b>The WSO2 Intelligent Document Processing connector allows you to process documents through the WSO2 MI.</b>",
   "elements": [
     {
       "type": "attribute",
@@ -10,16 +10,16 @@
         "name": "connectionName",
         "displayName": "Connection Name",
         "inputType": "string",
-        "defaultValue": "LLM_CONNECTION_1",
+        "defaultValue": "OLLAMA_CONNECTION_1",
         "required": "true",
-        "helpTip": "The name for the LLM connection",
+        "helpTip": "The name for the Ollama connection",
         "validation": "nameWithoutSpecialCharactors"
       }
     },
     {
       "type": "attributeGroup",
       "value": {
-        "groupName": "LLM Engine",
+        "groupName": "Ollama Engine",
         "elements": [
           {
             "type": "attribute",
@@ -27,31 +27,31 @@
               "name": "apiKey",
               "displayName": "API Key",
               "inputType": "stringOrExpression",
-              "defaultValue": "",
+              "defaultValue": "ollama",
               "required": "true",
-              "helpTip": "xxxx-xxxx-xxxx-xxxx"
+              "helpTip": "API key for Ollama"
             }
           },
           {
             "type": "attribute",
             "value": {
               "name": "model",
-              "displayName": "LLM Model",
+              "displayName": "ollama Model",
               "inputType": "stringOrExpression",
-              "defaultValue": "gpt-4.1-mini",
+              "defaultValue": "qwen2.5vl:3b",
               "required": "false",
-              "helpTip": "Define the LLM Model"
+              "helpTip": "Define the Ollama Model"
             }
           },
           {
             "type": "attribute",
             "value": {
               "name": "endpointUrl",
-              "displayName": "LLM Endpoint",
+              "displayName": "Ollama Endpoint",
               "inputType": "stringOrExpression",
-              "defaultValue": "https://api.openai.com/v1/chat/completions",
+              "defaultValue": "http://localhost:11434/v1/chat/completions",
               "required": "false",
-              "helpTip": "Define the LLM Endpoint"
+              "helpTip": "Define the Ollama v1 chat completions endpoint."
             }
           }
         ]

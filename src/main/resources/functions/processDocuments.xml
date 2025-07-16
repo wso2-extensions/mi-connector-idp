@@ -19,7 +19,7 @@
 	<parameter name="description" description="Prompt Operation Description"/>
 	<parameter name="maxTokens" description="Number of maximum tokens"/>
 	<parameter name="fileContent" description="File Content"/>
-	<parameter name="scannerOutputSchema" description="File Path to scanner output schema"/>
+	<parameter name="idpSchema" description="File Path to scanner output schema"/>
   <parameter name="responseVariable" description="The name of the variable to which the output should be stored."/>
   <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
   <parameter name="contentFormat" description="File content format, Data URI or Base64 encoded string."/>

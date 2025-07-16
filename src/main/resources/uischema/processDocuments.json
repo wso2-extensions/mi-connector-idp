@@ -16,9 +16,11 @@
               "displayName": "Connection",
               "inputType": "connection",
               "allowedConnectionTypes": [
-                "llm"
+                "OLLAMA",
+                "OPEN_AI",
+                "CUSTOM_LLM"
               ],
-              "defaultType": "connection.llm",
+              "defaultType": "connection.OLLAMA",
               "defaultValue": "",
               "required": "true",
               "helpTip": "Connection to be used"
@@ -71,12 +73,12 @@
           {
             "type": "attribute",
             "value": {
-              "name": "scannerOutputSchema",
-              "displayName": "Schema Name",
+              "name": "idpSchema",
+              "displayName": "Schema",
               "inputType": "idpSchemaGenerateView",
               "defaultValue": "",
               "required": "true",
-              "helpTip": "Generate a schema file for a provided image or PDF document."
+              "helpTip": "Define the output schema for extracting the content from the documents."
             }
           },
           

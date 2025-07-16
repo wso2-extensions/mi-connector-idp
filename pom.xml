@@ -23,7 +23,7 @@
     <artifactId>mi-connector-idp</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>WSO2 Micro Integrator IDP Connector</name>
+    <name>WSO2 Micro Integrator Intelligent Document Processing Connector</name>
     <url>http://wso2.org</url>
 
     <properties>

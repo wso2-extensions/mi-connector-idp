@@ -107,7 +107,7 @@ public class AIScannerAgentModel extends AIAgentModel {
             String endpointUrl = engine.getEndpointUrl();
             String apiKey = engine.getApiKey();
             String modelName = engine.getModel();
-
+            
             List<Map<String, Object>> messages = buildRequestMessages();
 
             JsonObject schemaObject = AIUtils.getSchemaContentAsJsonObject(getSchemaRegistryPath());

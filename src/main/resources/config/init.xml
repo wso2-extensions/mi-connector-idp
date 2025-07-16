@@ -16,6 +16,7 @@
   ~ under the License.
   -->
 <template name="init" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="connectionType" description="LLM provider type"/>
     <parameter name="name" description="Unique name to identify the connection"/>
     <parameter name="apiKey" description="API Key"/>
     <parameter name="model" description="LLM Model"/>

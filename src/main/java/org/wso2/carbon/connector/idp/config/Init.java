@@ -65,9 +65,23 @@ public class Init extends AbstractConnector implements ManagedLifecycle {
 
     private AIConnectionConfiguration getConnectionConfigFromContext(MessageContext mc) throws SynapseException {
         Optional<String> apiKey = AIUtils.getStringParam(mc, AIConstants.KEY_STRING);
-        String model = AIUtils.getStringParam(mc, AIConstants.MODEL_STRING).orElse(AIConstants.MODEL_DEFAULT);
-        String endpointURL = AIUtils.getStringParam(mc, AIConstants.ENDPOINT_STRING)
-                .orElse(AIConstants.ENDPOINT_DEFAULT);
+        Optional<String> connectionType = AIUtils.getStringParam(mc, AIConstants.CONNECTION_TYPE);
+
+        if (connectionType.isEmpty()) {
+             throw new SynapseException("Mandatory parameter 'connectionType' is not set.");
+         }
+         
+        String type = connectionType.get();
+        if (!AIConstants.OPEN_AI.equals(type) &&
+            !AIConstants.OLLAMA.equals(type) &&
+            !AIConstants.CUSTOM_LLM.equals(type)) {
+            throw new SynapseException("Invalid connectionType: " + type + ". Supported types are: " +
+                AIConstants.OPEN_AI + ", " + AIConstants.OLLAMA + ", " + AIConstants.CUSTOM_LLM);
+        }
+
+        AIUtils.ModelEndpointDefaults defaults = AIUtils.getDefaultsForConnectionType(type);
+        String model = AIUtils.getStringParam(mc, AIConstants.MODEL_STRING).orElse(defaults.model);
+        String endpointURL = AIUtils.getStringParam(mc, AIConstants.ENDPOINT_STRING).orElse(defaults.endpoint);
         Optional<String> connectionName = AIUtils.getStringParam(mc, AIConstants.CONNECTION_NAME);
 
         if (!apiKey.isPresent()) {

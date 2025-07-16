@@ -1,0 +1,62 @@
+{
+  "connectorName": "idp",
+  "connectionName": "OPEN_AI",
+  "title": "Open AI Connection",
+  "help": "<h1>Open AI Connection</h1>  <b>The WSO2 Intelligent Document Processing connector allows you to process documents through the WSO2 MI.</b>",
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "OPEN_AI_CONNECTION_1",
+        "required": "true",
+        "helpTip": "The name for the Open AI connection",
+        "validation": "nameWithoutSpecialCharactors"
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Open AI Engine",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiKey",
+              "displayName": "API Key",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "API key for Open AI"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "model",
+              "displayName": "Open AI Model",
+              "inputType": "stringOrExpression",
+              "defaultValue": "gpt-4.1-mini",
+              "required": "false",
+              "helpTip": "Define the Open AI Model"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "endpointUrl",
+              "displayName": "Open AI Endpoint",
+              "inputType": "stringOrExpression",
+              "defaultValue": "https://api.openai.com/v1/chat/completions",
+              "required": "false",
+              "helpTip": "Define the Open AI v1 chat completions endpoint."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+
