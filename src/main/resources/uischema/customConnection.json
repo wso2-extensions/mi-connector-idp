@@ -39,7 +39,7 @@
               "displayName": "LLM Model",
               "inputType": "stringOrExpression",
               "defaultValue": "gpt-4.1-mini",
-              "required": "false",
+              "required": "true",
               "helpTip": "Define the LLM Model"
             }
           },
@@ -47,10 +47,10 @@
             "type": "attribute",
             "value": {
               "name": "endpointUrl",
-              "displayName": "LLM Endpoint",
+              "displayName": "LLM Endpoint URL",
               "inputType": "stringOrExpression",
               "defaultValue": "https://api.openai.com/v1/chat/completions",
-              "required": "false",
+              "required": "true",
               "helpTip": "Define the v1 chat completions endpoint for your LLM provider."
             }
           }

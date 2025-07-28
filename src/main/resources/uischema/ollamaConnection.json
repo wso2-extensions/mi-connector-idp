@@ -47,7 +47,7 @@
             "type": "attribute",
             "value": {
               "name": "endpointUrl",
-              "displayName": "Ollama Endpoint",
+              "displayName": "Ollama Endpoint URL",
               "inputType": "stringOrExpression",
               "defaultValue": "http://localhost:11434/v1/chat/completions",
               "required": "false",

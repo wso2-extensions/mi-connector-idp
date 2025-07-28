@@ -38,7 +38,7 @@
                 "Base64"
               ],
               "required": "true",
-              "helpTip": "Select the format of the content to be scanned"
+              "helpTip": "Select the format of the content to be scanned. Data URI (e.g., data:image/png;base64,iVBORw0...) or Base64 (raw base64 encoded content only)."
             }
           },
           {

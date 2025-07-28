@@ -47,7 +47,7 @@
             "type": "attribute",
             "value": {
               "name": "endpointUrl",
-              "displayName": "Open AI Endpoint",
+              "displayName": "Open AI Endpoint URL",
               "inputType": "stringOrExpression",
               "defaultValue": "https://api.openai.com/v1/chat/completions",
               "required": "false",

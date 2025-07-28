@@ -19,6 +19,8 @@
     <subComponents> 
 		<component name="processDocuments" >
 	    		<file>processDocuments.xml</file>
+          <displayName>Process Documents</displayName>
+          <description>Extracts information from documents using AI.</description>
 		</component>
     </subComponents>    
 </component>
