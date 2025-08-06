@@ -16,11 +16,11 @@
   ~ under the License.
   -->
 <component name="functions" type="synapse/template" >
-    <subComponents>
+	<subComponents>
 		<component name="processDocuments" >
-          <file>processDocuments.xml</file>
-          <displayName>Process Documents</displayName>
-          <description>Extracts information from documents using AI.</description>
+			<file>processDocuments.xml</file>
+			<displayName>Process Documents</displayName>
+			<description>Extracts information from documents using AI.</description>
 		</component>
     </subComponents>
 </component>
