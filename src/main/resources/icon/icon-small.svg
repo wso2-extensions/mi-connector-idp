@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_3" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.5 16.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3597d3;
+      }
+
+      .cls-2 {
+        stroke-width: .5px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: none;
+        stroke: #3597d3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-3 {
+        stroke-width: .53px;
+      }
+
+      .cls-4 {
+        stroke-width: .75px;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <g>
+        <polygon class="cls-2" points="5.78 3.09 10.34 3.09 11.99 4.79 11.99 10.77 5.78 10.77 5.78 3.09"/>
+        <polyline class="cls-2" points="11.76 4.79 10.34 4.79 10.34 3.48"/>
+      </g>
+      <line class="cls-2" x1="7" y1="6.02" x2="10.77" y2="6.02"/>
+      <line class="cls-2" x1="7" y1="7.38" x2="10.77" y2="7.38"/>
+      <line class="cls-2" x1="7" y1="8.75" x2="10.77" y2="8.75"/>
+    </g>
+    <g>
+      <polyline class="cls-3" points="5.46 7.18 4.02 7.18 4.02 6.42"/>
+      <line class="cls-3" x1="5.65" y1="8.42" x2="4.02" y2="8.42"/>
+      <line class="cls-3" x1="5.51" y1="9.81" x2="3.14" y2="9.81"/>
+      <ellipse class="cls-3" cx="3.56" cy="8.41" rx=".46" ry=".41"/>
+      <ellipse class="cls-3" cx="4.02" cy="6.01" rx=".46" ry=".41"/>
+      <ellipse class="cls-3" cx="2.68" cy="9.81" rx=".46" ry=".41"/>
+    </g>
+    <g>
+      <polyline class="cls-3" points="6.22 11.2 6.22 12.65 5.46 12.65"/>
+      <line class="cls-3" x1="7.46" y1="11.01" x2="7.46" y2="12.65"/>
+      <line class="cls-3" x1="8.85" y1="11.16" x2="8.85" y2="13.52"/>
+      <ellipse class="cls-3" cx="7.44" cy="13.11" rx=".41" ry=".46"/>
+      <ellipse class="cls-3" cx="5.05" cy="12.65" rx=".41" ry=".46"/>
+      <ellipse class="cls-3" cx="8.85" cy="13.98" rx=".41" ry=".46"/>
+    </g>
+  </g>
+  <g>
+    <path class="cls-1" d="M13.01,9.93c-1.57,0-2.86,1.19-3.04,2.71h1.06c.17-.91.97-1.6,1.93-1.6.11,0,.22.01.33.03v.71h1.39c.15,0,.26.12.26.26s-.12.26-.26.26h-1.39v1.39h1.39c.15,0,.26.12.26.26s-.12.26-.26.26h-1.39v.71c-.11.02-.22.03-.33.03-.96,0-1.76-.69-1.93-1.6h-1.06c.18,1.52,1.47,2.71,3.04,2.71,1.7,0,3.08-1.38,3.08-3.08s-1.38-3.08-3.08-3.08Z"/>
+    <path class="cls-4" d="M11.34,15.02c-.94.43-1.99.67-3.09.67-4.11,0-7.44-3.33-7.44-7.44S4.14.81,8.25.81s7.44,3.33,7.44,7.44c0,.92-.17,1.81-.47,2.62"/>
+  </g>
+</svg>

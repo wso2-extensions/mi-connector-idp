@@ -1,0 +1,62 @@
+{
+  "connectorName": "idp",
+  "connectionName": "CUSTOM_LLM",
+  "title": "LLM Connection",
+  "help": "<h1>LLM Connection</h1> <b>The WSO2 Intelligent Document Processing connector allows you to process documents through the WSO2 MI.</b>",
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "LLM_CONNECTION_1",
+        "required": "true",
+        "helpTip": "The name for the LLM connection",
+        "validation": "nameWithoutSpecialCharactors"
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "LLM Engine",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiKey",
+              "displayName": "API Key",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Generate an API key from your LLM provider and enter it here."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "model",
+              "displayName": "LLM Model",
+              "inputType": "stringOrExpression",
+              "defaultValue": "gpt-4.1-mini",
+              "required": "true",
+              "helpTip": "Define the LLM Model"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "endpointUrl",
+              "displayName": "LLM Endpoint URL",
+              "inputType": "stringOrExpression",
+              "defaultValue": "https://api.openai.com/v1/chat/completions",
+              "required": "true",
+              "helpTip": "Define the v1 chat completions endpoint for your LLM provider."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,194 @@
+{
+    "name":"Intelligent Document Processing",
+    "owner":"WSO2",
+    "product":"MI",
+    "category": "Developer Tools",
+    "documentationUrl": "https://mi.docs.wso2.com/en/4.4.0/",
+    "mavenGroupId": "org.wso2.integration.connector",
+    "mavenArtifactId": "mi-connector-idp",
+    "description": "The WSO2 Intelligent Document Processing connector allows you to extract structured data from unstructured documents.",
+    "status": "Active",
+    "rank": 15,
+    "type": "Connector",
+    "releases": [
+        {
+            "tagName": "v1.0.0",
+            "products": [
+                "MI 4.4.0"
+            ],
+            "operations": [
+                {
+                    "name": "processDocuments",
+                    "description": "Processes Documents",
+                    "params": [
+                        {
+                            "name": "configRef",
+                            "type": "connection",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Connection to be used"
+                        },
+                        {
+                            "name": "contentFormat",
+                            "type": "combo",
+                            "required": true,
+                            "defaultValue": "Data URI",
+                            "description": "Select the format of the content to be scanned. Choose 'Data URI' for complete data URI strings (e.g., data:image/png;base64,iVBORw0...) or 'Base64' for raw base64 encoded content only."
+                        },
+                        {
+                            "name": "mimeType",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "",
+                            "description": "Specify the MIME type of the content to be scanned. This field only applies when contentFormat is set to 'Base64'. Allowed values are: image/png, image/jpeg, image/gif, image/webp, application/pdf"
+                        },
+                        {
+                            "name": "fileContent",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Provide the document or image content to be processed by AI. This can be either a complete Data URI string (including MIME type and base64 data) or raw base64 encoded content, depending on the selected Content Format."
+                        },
+                        {
+                            "name": "idpSchema",
+                            "type": "idpSchemaGenerateView",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Define the output schema for extracting the content from the documents."
+                        },
+                        {
+                            "name": "maxTokens",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "4096",
+                            "description": "The maximum number of tokens that can be used to generate the output response."
+                        },
+                        {
+                            "name": "responseVariable",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Name of the variable to which the output of the operation should be assigned"
+                        },
+                        {
+                            "name": "overwriteBody",
+                            "type": "checkbox",
+                            "required": false,
+                            "defaultValue": "false",
+                            "description": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable)."
+                        }
+                    ],
+                    "isHidden": false
+                }
+            ],
+            "connections": [
+                {
+                    "name": "OPEN_AI",
+                    "description": "Open AI connection config",
+                    "params": [
+                        {
+                            "name": "connectionName",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "OPEN_AI_CONNECTION_1",
+                            "description": "The name for the Open AI connection"
+                        },
+                        {
+                            "name": "apiKey",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "API key for Open AI"
+                        },
+                        {
+                            "name": "model",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "gpt-4.1-mini",
+                            "description": "Define the Open AI Model"
+                        },
+                        {
+                            "name": "endpointUrl",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "https://api.openai.com/v1/chat/completions",
+                            "description": "Define the Open AI v1 chat completions endpoint."
+                        }
+                    ]
+                },
+                {
+                    "name": "OLLAMA",
+                    "description": "Ollama connection config",
+                    "params": [
+                        {
+                            "name": "connectionName",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "OLLAMA_CONNECTION_1",
+                            "description": "The name for the Ollama connection"
+                        },
+                        {
+                            "name": "apiKey",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "ollama",
+                            "description": "API key for Ollama"
+                        },
+                        {
+                            "name": "model",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "qwen2.5vl:3b",
+                            "description": "Define the Ollama Model"
+                        },
+                        {
+                            "name": "endpointUrl",
+                            "type": "stringOrExpression",
+                            "required": false,
+                            "defaultValue": "http://localhost:11434/v1/chat/completions",
+                            "description": "Define the Ollama v1 chat completions endpoint."
+                        }
+                    ]
+                },
+                {
+                    "name": "CUSTOM_LLM",
+                    "description": "Custom LLM connection config",
+                    "params": [
+                        {
+                            "name": "connectionName",
+                            "type": "string",
+                            "required": true,
+                            "defaultValue": "LLM_CONNECTION_1",
+                            "description": "The name for the LLM connection"
+                        },
+                        {
+                            "name": "apiKey",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "",
+                            "description": "Generate an API key from your LLM provider and enter it here."
+                        },
+                        {
+                            "name": "model",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "gpt-4.1-mini",
+                            "description": "Define the LLM Model"
+                        },
+                        {
+                            "name": "endpointUrl",
+                            "type": "stringOrExpression",
+                            "required": true,
+                            "defaultValue": "https://api.openai.com/v1/chat/completions",
+                            "description": "Define the v1 chat completions endpoint for your LLM provider."
+                        }
+                    ]
+                }
+            ]
+           
+        }
+    ],
+    "labels": [
+        "ai"
+    ]
+}

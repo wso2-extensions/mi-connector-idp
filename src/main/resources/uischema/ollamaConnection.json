@@ -1,0 +1,62 @@
+{
+  "connectorName": "idp",
+  "connectionName": "OLLAMA",
+  "title": "Ollama Connection",
+  "help": "<h1>Ollama Connection</h1> <b>The WSO2 Intelligent Document Processing connector allows you to process documents through the WSO2 MI.</b>",
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "OLLAMA_CONNECTION_1",
+        "required": "true",
+        "helpTip": "The name for the Ollama connection",
+        "validation": "nameWithoutSpecialCharactors"
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Ollama Engine",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiKey",
+              "displayName": "API Key",
+              "inputType": "stringOrExpression",
+              "defaultValue": "ollama",
+              "required": "true",
+              "helpTip": "API key for Ollama"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "model",
+              "displayName": "ollama Model",
+              "inputType": "stringOrExpression",
+              "defaultValue": "qwen2.5vl:3b",
+              "required": "false",
+              "helpTip": "Define the Ollama Model"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "endpointUrl",
+              "displayName": "Ollama Endpoint URL",
+              "inputType": "stringOrExpression",
+              "defaultValue": "http://localhost:11434/v1/chat/completions",
+              "required": "false",
+              "helpTip": "Define the Ollama v1 chat completions endpoint."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+

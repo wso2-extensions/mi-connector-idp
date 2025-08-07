@@ -15,13 +15,13 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-<component name="config" type="synapse/template">
-    <subComponents>
-        <component name="init">
-            <file>init.xml</file>
-            <description>Config operation</description>
-            <hidden>true</hidden>
-        </component>
+<component name="functions" type="synapse/template" >
+	<subComponents>
+		<component name="processDocuments" >
+			<file>processDocuments.xml</file>
+			<displayName>Process Documents</displayName>
+			<description>Extracts information from documents using AI.</description>
+		</component>
     </subComponents>
 </component>
 
