@@ -22,6 +22,6 @@
         <description>WSO2 integration module for Intelligent Document Processing</description>
     </component>
     <displayName> Intelligent Document Processing</displayName>
-    <icon>icon/icon-small.svg</icon>
+    <icon>icon/icon-small.png</icon>
 </connector>
 
