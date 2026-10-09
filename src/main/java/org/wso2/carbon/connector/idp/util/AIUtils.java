@@ -76,13 +76,18 @@ public class AIUtils {
      * @param schemaPath     Registry Path of the Schema
      * @return InputStream
      */
-    public static InputStream getSchemaFromRegistry(String schemaPath) throws AIConnectorException {
+    public static InputStream getSchemaFromRegistry(String schemaPath, String artifactIdentifier) throws AIConnectorException {
 
         if (!schemaPath.isEmpty()) {
             try {
                 MicroIntegratorRegistry registry = new MicroIntegratorRegistry();
-                String jsonPath_1 = AIConstants.REGISTRY_PATH + schemaPath + "/" + schemaPath + ".json";
-                String jsonPath_2 = AIConstants.REGISTRY_PATH_BELOW_4_4_0 + schemaPath + "/" + schemaPath + ".json"; // for backward compatibility
+                String schemaName = schemaPath;
+                if (StringUtils.isNotBlank(artifactIdentifier)) {
+                    // Use the fully qualified schema name if this is a versioned artifact
+                    schemaName = artifactIdentifier + "__" + schemaPath;
+                }
+                String jsonPath_1 = AIConstants.REGISTRY_PATH + schemaPath + "/" + schemaName + ".json";
+                String jsonPath_2 = AIConstants.REGISTRY_PATH_BELOW_4_4_0 + schemaPath + "/" + schemaName + ".json"; // for backward compatibility
 
                 if (registry.isResourceExists(jsonPath_1)) {
                     Resource resource = registry.getResource(jsonPath_1);
@@ -131,8 +136,9 @@ public class AIUtils {
         }
     }
 
-    public static JsonObject getSchemaContentAsJsonObject(String schemaRegistryPath) throws AIConnectorException {
-        try (InputStream schemaStream = getSchemaFromRegistry(schemaRegistryPath)) { 
+    public static JsonObject getSchemaContentAsJsonObject(String schemaRegistryPath, String artifactIdentifier)
+            throws AIConnectorException {
+        try (InputStream schemaStream = getSchemaFromRegistry(schemaRegistryPath, artifactIdentifier)) {
             if (schemaStream == null) {
                 throw new AIConnectorException("Could not find or open schema at path: " + schemaRegistryPath);
             }
@@ -155,7 +161,7 @@ public class AIUtils {
         return fileContent;
     }
 
-    public static AIScannerAgentModel getAIScannerAgent(MessageContext mc) throws AIConnectorException {
+    public static AIScannerAgentModel getAIScannerAgent(MessageContext mc, String artifactIdentifier) throws AIConnectorException {
         AIScannerAgentModel agent = new AIScannerAgentModel();
 
         Integer maxTokens = getIntegerParam(mc, AIConstants.MAX_TOKENS).orElse(AIConstants.MAX_TOKENS_DEFAULT);
@@ -173,7 +179,7 @@ public class AIUtils {
 
         agent.setMaxTokens(maxTokens);
         agent.setSchemaRegistryPath(schemaFile);
-
+        agent.setArtifactIdentifier(artifactIdentifier);
         return agent;
     }
 

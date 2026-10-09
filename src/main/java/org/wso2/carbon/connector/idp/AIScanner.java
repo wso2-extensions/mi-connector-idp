@@ -37,7 +37,13 @@ public class AIScanner extends AbstractConnectorOperation {
             ConnectionHandler handler = ConnectionHandler.getConnectionHandler();
             AIConnection aiConnection = (AIConnection) handler
                     .getConnection(AIConstants.CONNECTOR_NAME, AIUtils.getConnectionName(messageContext));
-            AIScannerAgentModel agent = AIUtils.getAIScannerAgent(messageContext);
+            String artifactIdentifier = "";
+            try {
+                artifactIdentifier = getArtifactIdentifier();
+            } catch (NoSuchMethodError ignore) {
+                // ignore since this method does not exist in older versions of MI prior to 4.5.0
+            }
+            AIScannerAgentModel agent = AIUtils.getAIScannerAgent(messageContext, artifactIdentifier);
             agent.processRequest(aiConnection);
             JsonObject resultJSON = agent.getResponse();
             handleConnectorResponse(messageContext, responseVariable, overwriteBody, resultJSON, null, null);

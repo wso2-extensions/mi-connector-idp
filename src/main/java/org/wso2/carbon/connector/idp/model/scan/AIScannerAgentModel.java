@@ -44,6 +44,7 @@ public class AIScannerAgentModel extends AIAgentModel {
     private Integer maxTokens = AIConstants.MAX_TOKENS_DEFAULT;
     private String fileContent = "";
     private String schemaRegistryPath = "";
+    private String artifactIdentifier = "";
 
     private static final Gson gson = new Gson();
 
@@ -99,6 +100,16 @@ public class AIScannerAgentModel extends AIAgentModel {
         this.fileContent = fileContent;
     }
 
+    public void setArtifactIdentifier(String artifactIdentifier) {
+
+        this.artifactIdentifier = artifactIdentifier;
+    }
+
+    public String getArtifactIdentifier() {
+
+        return this.artifactIdentifier;
+    }
+
    @Override
     public void processRequest(AIConnection connection) throws AIConnectorException {
         try {
@@ -110,7 +121,7 @@ public class AIScannerAgentModel extends AIAgentModel {
             
             List<Map<String, Object>> messages = buildRequestMessages();
 
-            JsonObject schemaObject = AIUtils.getSchemaContentAsJsonObject(getSchemaRegistryPath());
+            JsonObject schemaObject = AIUtils.getSchemaContentAsJsonObject(getSchemaRegistryPath(), getArtifactIdentifier());
 
             Map<String, Object> jsonSchemaPayload = Map.of(
                     "name", "document_extraction_schema",
